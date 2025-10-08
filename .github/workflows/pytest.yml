@@ -58,10 +58,6 @@ jobs:
           echo "Build Number=${{ github.run_number }}" > output/allure/allure-results/environment.properties
           echo "Date=$(date '+%Y-%m-%d %H:%M:%S')" >> output/allure/allure-results/environment.properties
 
-      - name: Ensure history directory exists
-        run: mkdir -p output/allure/history
-        if: always()
-
       - name: Generate Allure Report
         env:
           ALLURE_REPORT_BASE_URL: /${{ github.event.repository.name }}/
