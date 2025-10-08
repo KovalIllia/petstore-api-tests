@@ -88,7 +88,9 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git fetch origin gh-pages
           git checkout gh-pages
-          git add output/allure/history
+          # Копіюємо вміст history у корінь gh-pages, щоб інтегрувати з існуючою структурою
+          cp -r output/allure/history/. .
+          git add .
           git commit -m "Update Allure history [skip ci]" || echo "No changes to commit"
           git push origin gh-pages
         if: always()
