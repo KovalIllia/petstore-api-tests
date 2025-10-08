@@ -41,10 +41,14 @@ jobs:
         run: mkdir -p output/allure
 
       - name: Download previous Allure history
+        continue-on-error: true
         run: |
-          git fetch origin gh-pages || echo "No gh-pages branch"
-          git checkout origin/gh-pages -- output/allure/history \
-            || echo "No previous history found"
+          git fetch origin gh-pages
+          git checkout origin/gh-pages -- allure-history \
+            2>/dev/null || echo "No previous history found"
+          if [ -d "allure-history" ]; then
+            cp -r allure-history output/allure/history
+          fi
 
       - name: Run pytest with Allure
         run: |
@@ -61,45 +65,28 @@ jobs:
             >> output/allure/allure-results/environment.properties
 
       - name: Generate Allure Report
-        env:
-          ALLURE_REPORT_BASE_URL: /${{ github.event.repository.name }}/
         uses: simple-elf/allure-report-action@master
         with:
           allure_results: output/allure/allure-results
           allure_report: output/allure/allure-report
           allure_history: output/allure/history
+          gh_pages: gh-pages
+          allure_history_folder: allure-history
 
       - name: Debug Allure report directory
         if: always()
         run: |
+          echo "Contents of allure-report:"
           ls -la output/allure/allure-report \
-            || echo "Directory is empty or not created"
+            || echo "Directory not found"
+          echo "Contents of root allure-report (if exists):"
+          ls -la allure-report || echo "Root allure-report not found"
 
-      - name: Deploy reports to GitHub Pages
+      - name: Deploy to GitHub Pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: output/allure/allure-report
-          keep_files: true
-          force_orphan: true
-
-      - name: Commit and push Allure history
-        if: always()
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email \
-            "github-actions[bot]@users.noreply.github.com"
-          git fetch origin gh-pages || echo "No gh-pages branch yet"
-          git checkout gh-pages || git checkout -b gh-pages
-
-          mkdir -p output/allure/history
-          cp -r output/allure/allure-report/history/* \
-            output/allure/history/ || echo "No new history generated"
-
-          git add output/allure/history || echo "No history folder to add"
-          git commit -m "Update Allure history [skip ci]" \
-            || echo "No changes to commit"
-          git pull origin gh-pages --rebase || echo "Nothing to rebase"
-          git push origin gh-pages --force
+          publish_dir: allure-report
+          keep_files: false
