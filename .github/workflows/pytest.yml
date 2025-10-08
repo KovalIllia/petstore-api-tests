@@ -8,10 +8,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
 
     steps:
       - name: Checkout code
@@ -37,34 +33,48 @@ jobs:
 
       - name: Create output directories
         run: |
-          # Створюємо лише allure-results
           mkdir -p output/allure-results
+          
+
+      - name: Cache Allure history
+        uses: actions/cache@v3
+        with:
+          path: output/allure/history
+
+          key: allure-history-${{ github.ref_name }}
+          restore-keys: |
+            allure-history-
 
       - name: Run pytest with Allure
         run: |
-          # Використовуємо коректний шлях для allure-results
+          # Запуск тестів.
           pytest -s \
-            --alluredir=output/allure-results \
+            --alluredir=output/allure/allure-results \
             tests/
 
+      - name: Add environment info to Allure
+        run: |
+          mkdir -p output/allure/allure-results
+          echo "Build Number=${{ github.run_number }}" > output/allure/allure-results/environment.properties
+          echo "Date=$(date '+%Y-%m-%d %H:%M:%S')" >> output/allure/allure-results/environment.properties
+          
 
-      - name: Upload Allure results artifact
-        uses: actions/upload-artifact@v4
+      - name: Generate Allure Report
+
+        env:
+          ALLURE_REPORT_BASE_URL: /${{ github.event.repository.name }}/
+        uses: simple-elf/allure-report-action@master
         with:
-          name: allure-results
-          path: output/allure-results
+          allure_results: output/allure/allure-results
+          allure_report: output/allure/allure-report
+          allure_history: output/allure/history
 
-
-      - name: Build and deploy Allure Report to GitHub Pages
-        uses: allure-framework/allure-action/upload-pages-build@v1
-        id: allure-build
-        with:
-          artifact-path: allure-results
-          base-url: ${{ github.event.repository.name }}
-
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      - name: Deploy reports to GitHub Pages
         if: always()
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          artifact_name: ${{ steps.allure-build.outputs.artifact-name }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: output/allure/allure-report
+
+          keep_files: true
