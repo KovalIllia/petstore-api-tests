@@ -1,0 +1,1 @@
+Generated pet payload: {'id': 141501608, 'category': {'id': 645596664, 'name': 'artist'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/962/644'], 'tags': [{'id': 294066751, 'name': 'media'}], 'status': 'available'}
