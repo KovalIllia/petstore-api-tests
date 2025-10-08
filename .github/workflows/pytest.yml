@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Витягуємо всі гілки та історію
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -84,6 +86,8 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages
+          git checkout gh-pages
           git add output/allure/history
           git commit -m "Update Allure history [skip ci]" || echo "No changes to commit"
           git push origin gh-pages
