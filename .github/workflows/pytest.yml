@@ -45,9 +45,9 @@ jobs:
           path: output/allure/history
           # Унікальний ключ для ЗБЕРЕЖЕННЯ, базується на унікальному ID коміту
           key: allure-history-${{ github.ref_name }}-${{ github.sha }}
-          # Загальний ключ для ВІДНОВЛЕННЯ (знаходить останній успішний кеш)
+          # ФІНАЛЬНИЙ КЛЮЧ ВІДНОВЛЕННЯ: Використовуємо лише префікс, щоб відновити будь-який останній кеш
           restore-keys: |
-            allure-history-${{ github.ref_name }}-
+            allure-history-
 
       - name: Run pytest with Allure
         run: |
