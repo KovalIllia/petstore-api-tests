@@ -36,18 +36,15 @@ jobs:
         run: |
           mkdir -p output/allure
 
-      # 1. ЄДИНА ДІЯ КЕШУВАННЯ:
-      # ВИКОРИСТОВУЄМО SHA: Це унікальний ID коміту. Це гарантує, що ключ для ЗБЕРЕЖЕННЯ
-      # завжди буде новим, уникаючи конфлікту "Cache save failed".
-      - name: Cache Allure history
-        uses: actions/cache@v3
+      - name: Restore and Save Allure history
+        uses: actions/cache@v4
         with:
           path: output/allure/history
-          # Унікальний ключ для ЗБЕРЕЖЕННЯ, базується на унікальному ID коміту
           key: allure-history-${{ github.ref_name }}-${{ github.sha }}
-          # ФІНАЛЬНИЙ КЛЮЧ ВІДНОВЛЕННЯ: Використовуємо лише префікс, щоб відновити будь-який останній кеш
           restore-keys: |
+            allure-history-${{ github.ref_name }}-
             allure-history-
+        if: always()
 
       - name: Run pytest with Allure
         run: |
@@ -61,6 +58,10 @@ jobs:
           echo "Build Number=${{ github.run_number }}" > output/allure/allure-results/environment.properties
           echo "Date=$(date '+%Y-%m-%d %H:%M:%S')" >> output/allure/allure-results/environment.properties
 
+      - name: Ensure history directory exists
+        run: mkdir -p output/allure/history
+        if: always()
+
       - name: Generate Allure Report
         env:
           ALLURE_REPORT_BASE_URL: /${{ github.event.repository.name }}/
@@ -69,6 +70,10 @@ jobs:
           allure_results: output/allure/allure-results
           allure_report: output/allure/allure-report
           allure_history: output/allure/history
+
+      - name: Debug Allure report directory
+        run: ls -la output/allure/allure-report || echo "Directory is empty or not created"
+        if: always()
 
       - name: Deploy reports to GitHub Pages
         if: always()
