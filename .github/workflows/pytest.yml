@@ -38,55 +38,35 @@ jobs:
           pip install pytest allure-pytest
 
       - name: Create output directories
-        run: mkdir -p output/allure
-
-      - name: Download previous Allure history
-        continue-on-error: true
-        run: |
-          git fetch origin gh-pages
-          git checkout origin/gh-pages -- allure-history \
-            2>/dev/null || echo "No previous history found"
-          if [ -d "allure-history" ]; then
-            cp -r allure-history output/allure/history
-          fi
+        run: mkdir -p allure-results
 
       - name: Run pytest with Allure
         run: |
           pytest -s \
-            --alluredir=output/allure/allure-results \
+            --alluredir=allure-results \
             tests/
 
-      - name: Add environment info to Allure
-        run: |
-          mkdir -p output/allure/allure-results
-          echo "Build Number=${{ github.run_number }}" \
-            > output/allure/allure-results/environment.properties
-          echo "Date=$(date '+%Y-%m-%d %H:%M:%S')" \
-            >> output/allure/allure-results/environment.properties
-
-      - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@master
-        with:
-          allure_results: output/allure/allure-results
-          allure_report: output/allure/allure-report
-          allure_history: output/allure/history
-          gh_pages: gh-pages
-          allure_history_folder: allure-history
-
-      - name: Debug Allure report directory
+      - name: Get Allure history
+        uses: actions/checkout@v4
         if: always()
-        run: |
-          echo "Contents of allure-report:"
-          ls -la output/allure/allure-report \
-            || echo "Directory not found"
-          echo "Contents of root allure-report (if exists):"
-          ls -la allure-report || echo "Root allure-report not found"
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
 
-      - name: Deploy to GitHub Pages
+      - name: Allure Report action
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+          keep_reports: 20
+
+      - name: Deploy report to Github Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-report
+          publish_dir: allure-history
           keep_files: false
