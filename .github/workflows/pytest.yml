@@ -2,7 +2,7 @@ name: Pytest Workflow
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -36,14 +36,18 @@ jobs:
         run: |
           mkdir -p output/allure
 
-      - name: Restore Allure history
+      # 1. ЄДИНА ДІЯ КЕШУВАННЯ:
+      # ВИКОРИСТОВУЄМО SHA: Це унікальний ID коміту. Це гарантує, що ключ для ЗБЕРЕЖЕННЯ
+      # завжди буде новим, уникаючи конфлікту "Cache save failed".
+      - name: Cache Allure history
         uses: actions/cache@v3
-        id: cache-restore
         with:
           path: output/allure/history
-          key: allure-history-${{ github.ref_name }}
+          # Унікальний ключ для ЗБЕРЕЖЕННЯ, базується на унікальному ID коміту
+          key: allure-history-${{ github.ref_name }}-${{ github.sha }}
+          # Загальний ключ для ВІДНОВЛЕННЯ (знаходить останній успішний кеш)
           restore-keys: |
-            allure-history-
+            allure-history-${{ github.ref_name }}-
 
       - name: Run pytest with Allure
         run: |
@@ -74,12 +78,3 @@ jobs:
           publish_branch: gh-pages
           publish_dir: output/allure/allure-report
           keep_files: true
-
-
-      - name: Save Allure history
-        uses: actions/cache/save@v3
-        if: always()
-        with:
-          path: output/allure/history
-          key: allure-history-${{ github.ref_name }}
-
