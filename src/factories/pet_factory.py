@@ -36,5 +36,4 @@ class UpdatePetFactory:
         if status:
             body["status"] = status
         return body
-       # return {"name":name if name is not None else"Topik",
-       #         "status":status if status is not None else "available"}
+

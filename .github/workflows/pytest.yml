@@ -66,13 +66,15 @@ jobs:
           name: allure-results
           path: output/allure/allure-results
 
-      # 7. Generate Allure Report
-      - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@master
+        # 7. Cache Allure history (щоб історія попередніх запусків зберігалась)
+      - name: Cache Allure history
+        uses: actions/cache@v3
         with:
-          allure_results: output/allure/allure-results
-          allure_report: output/allure/allure-report
-          allure_history: allure-history
+          path: output/allure/history
+          key: allure-history-${{ github.ref_name }}
+          restore-keys: |
+            allure-history-
+
 
       # 8. Deploy Allure report (разом із pytest-report.html) на GitHub Pages
       - name: Deploy reports to GitHub Pages
@@ -82,3 +84,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: output/allure/allure-report
+
+
