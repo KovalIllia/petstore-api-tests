@@ -1,0 +1,103 @@
+[33ma85a5ba[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m added fixes to pytest.yml part23
+[33ma8cbd29[m added fixes to pytest.yml part22
+[33mf2ffc99[m added fixes to pytest.yml part20/2
+[33m67e5361[m added fixes to pytest.yml part20/1
+[33m35b2ed0[m added fixes to pytest.yml part20
+[33me1f9cfc[m added fixes to pytest.yml part19
+[33m08d55e5[m added fixes to pytest.yml part18
+[33me056564[m added fixes to pytest.yml part17
+[33m396fbd5[m added fixes to pytest.yml part16
+[33mc4d61bc[m added fixes to pytest.yml part15
+[33mdce12ef[m added fixes to pytest.yml part14
+[33ma557e89[m added fixes to pytest.yml part13
+[33ma1c2cee[m added fixes to pytest.yml part12
+[33m0555fda[m added fixes to pytest.yml part11
+[33m3e94f3c[m added fixes to pytest.yml part10
+[33m76ace18[m added fixes to pytest.yml part9
+[33md6a68a1[m added fixes to pytest.yml part8
+[33mbd70e5c[m added fixes to pytest.yml part7
+[33me95cc9f[m added fixes to pytest.yml part6
+[33mca9bc46[m added fixes to pytest.yml part6
+[33m28482dd[m added fixes to pytest.yml part5
+[33mc5d491e[m added fixes to pytest.yml part4
+[33m6be83d0[m added fixes to pytest.yml part3
+[33ma8c4d80[m added fixes to pytest.yml part2
+[33m3ab984d[m added fixes to pytest.yml
+[33m43dc27e[m added history for test_results
+[33m3fa9919[m update pytest.yml 3
+[33m819492e[m update pytest.yml 2
+[33me519942[m update pytest.yml
+[33mf1e36f8[m Merge remote-tracking branch 'origin/master'
+[33m762e2e8[m update pytest.yml
+[33m20cc3db[m update READ.me
+[33m6aea364[m add update for auto generate test report
+[33m01817d0[m add fixes to test_pet_api.py
+[33m3881281[m add fixes to test_store_api.py,waiters.py
+[33mcf12c21[m add minor fix test_store_api.py 2
+[33mb8249db[m add minor fix test_store_api.py
+[33mace674a[m add working store_api
+[33m9a1ee38[m add types of logs and fixes to pet.api
+[33m433b14e[m add types of logs
+[33m4510217[m add types of logs
+[33ma3b4431[m update README.md
+[33m4f04fc7[m Fix GitHub Actions with reporting 2
+[33ma303f7a[m Fix GitHub Actions with reporting
+[33m5d626f6[m Fix GitHub Actions
+[33m4c83d7b[m Fix GitHub Actions workflow_dispatch inputs 2
+[33m800c418[m Fix GitHub Actions workflow_dispatch inputs
+[33m9ba6d92[m minor commit
+[33mdacdab3[m minor commit
+[33m71c6a39[m change directory pytest.yml
+[33m77a2d11[m Fix allure directory
+[33mb3f549d[m change directory pytest.yml
+[33m07fcd4a[m change format pytest.yml
+[33m2a42cf6[m Merge: iteration-06-refactor-tests-structure → master
+[33m41ad182[m[33m ([m[1;31morigin/iteration-06-refactor-tests-structure[m[33m, [m[1;32miteration-06-refactor-tests-structure[m[33m)[m added pytest.yml
+[33mf75361e[m added fixed test_result in right directory output/test_result
+[33mc9105c2[m huge refactoring + working pet.api
+[33m97fb60c[m added fixed test_pet_api.py and waiters.py
+[33mea571f0[m added fixed test_update_pet_with_form and working wait_for_pet
+[33meace313[m need to fix test_update_pet_with_form and wait_for_pet
+[33mad55768[m fixed class Checking(),test_add_pet,test_update_pet,added Enum
+[33m415a8cd[m fixed test_update_pet
+[33m07230d2[m added 1 working test test_add_pet.py
+[33m5adda7a[m[33m ([m[1;32mbackup_master[m[33m)[m last minor changes
+[33m950d8b1[m last updates before big refactoring p2
+[33mba8397b[m last updates before big refactoring
+[33m5f0b0b2[m[33m ([m[1;32miteration-05-test-reafactoring[m[33m)[m Refactoring tests and update README
+[33m6fbbc3e[m Merge remote-tracking branch 'origin/master' into iteration-05-test-reafactoring
+[33mfe303e5[m some changes before push to master
+[33m66403dc[m Delete how 9c2d718
+[33mdd2add1[m added minor changes 2
+[33m7ed0827[m[33m ([m[1;31morigin/iteration-05-test-reafactoring[m[33m)[m added minor changes
+[33mc7718f2[m[33m ([m[1;31morigin/iteration-04-add-docker[m[33m, [m[1;32miteration-04-add-docker[m[33m)[m added fixes to the tests
+[33m8621e1c[m Update README.md
+[33mdb47c9e[m Update README.md
+[33m6429b18[m Update README.md
+[33m977827c[m Create README.md
+[33m1c81b82[m added Allure script
+[33m4c9a3f5[m added Docker container
+[33m1c0a499[m[33m ([m[1;31morigin/iteration-03-without-docker[m[33m, [m[1;32miteration-03-without-docker[m[33m)[m added finished block pet "Everything about your Pets"
+[33m8a6e3cf[m added test_find_pet_by_id, wait_for_pet, test_update_pet_with_form
+[33m7a0cab8[m added test_update_pet, test_find_pet_by_status
+[33ma0b3290[m added fixes to test_pet_api.py, test_store_api.py
+[33mc92ee67[m added new structure(global refactor),new chapter PetApi
+[33mc6ac9de[m added finished testing for the STORE section, need to understand that petstore is not stable
+[33md1cc488[m added 3 valid test: test_get_inventories_by_status, test_create_first_order, test_find_purchase_order_by_id and fixture
+[33m8083d70[m added 1-st valid test: test_create_first_order
+[33md491550[m added refactoring for api.py
+[33md31646c[m added allure loggging
+[33m2221f36[m added loggging, but have a problem with error (probably with order_id)
+[33m6d868f5[m new version. 2 test = 2 scenarios check
+[33m4a8c3ca[m new version. 2 test = 2 scenarios
+[33mcb44b90[m new version. 2 test = 2 scenarios
+[33mb2e9310[m new version. 2 test = 2 scenarios
+[33mccccdc7[m new version. 2 test = 2 scenarios
+[33m2749227[m p4 (Store: get,post,get,delete)
+[33mde7d8cf[m p4 (Store: get,post,get,delete)
+[33m3d1c63a[m Merge remote-tracking branch 'origin/master'
+[33m79dc042[m p3+something new
+[33ma390af7[m p3
+[33m2bceb62[m p2
+[33m64167e6[m p2
+[33m1958e96[m p1
