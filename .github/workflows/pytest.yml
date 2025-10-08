@@ -1,88 +1,72 @@
+---
 name: Pytest Workflow
-
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:  # manual run
-
+    branches: [main]
+  workflow_dispatch:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Cloning a repository
       - name: Checkout code
         uses: actions/checkout@v4
+      # інші кроки тут...
+steps:
+  - name: Checkout code
+    uses: actions/checkout@v4
+  - name: Set up Python
+    uses: actions/setup-python@v5
+    with:
+      python-version: '3.9'
+  - name: Cache dependencies
+    uses: actions/cache@v4
+    with:
+      path: ~/.cache/pip
+      key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+      restore-keys: |
+        ${{ runner.os }}-pip-
+  - name: Install dependencies
+    run: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+      pip install pytest allure-pytest pytest-html pytest-xdist
+  - name: Run pytest with Allure
+    run: |
+      mkdir -p output/test_result output/allure/allure-results output/reports
+      pytest -s \
+        --alluredir=output/allure/allure-results \
+        --junitxml=output/test_result/results.xml \
+        --html=output/reports/report.html \
+        tests/
+  - name: Copy pytest-html for Allure
+    run: cp output/reports/report.html output/allure/allure-results/pytest-report.html
 
-      # 2. Install Python
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.9"
-
-      # 3. Dependency caching
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
-      # 4. Installing dependencies
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pytest allure-pytest pytest-html pytest-xdist
-
-      # 5. Run pytest with Allure
-      - name: Run pytest
-        run: |
-          mkdir -p output/test_result output/allure/allure-results output/reports
-          pytest -s \
-            --alluredir=output/allure/allure-results \
-            --junitxml=output/test_result/results.xml \
-            --html=output/reports/report.html \
-            tests/
-
-      # 5.1 Copy pytest-html into allure-results (щоб Allure action міг підтягнути)
-      - name: Copy pytest-html for Allure
-        run: cp output/reports/report.html output/allure/allure-results/pytest-report.html
-
-      # 6. Upload artifacts (history of launches)
-      - name: Upload test reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-reports
-          path: |
-            output/test_result/
-            output/reports/
-
-      - name: Upload Allure results
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results
-          path: output/allure/allure-results
-
-        # 7. Cache Allure history (щоб історія попередніх запусків зберігалась)
-      - name: Cache Allure history
-        uses: actions/cache@v3
-        with:
-          path: output/allure/history
-          key: allure-history-${{ github.ref_name }}
-          restore-keys: |
-            allure-history-
-
-
-      # 8. Deploy Allure report (разом із pytest-report.html) на GitHub Pages
-      - name: Deploy reports to GitHub Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: output/allure/allure-report
-
-
+  # 🧩 Додаємо build info для Allure
+  - name: Add environment info to Allure
+    run: |
+      mkdir -p output/allure/allure-results
+      echo "Build Number=${{ github.run_number }}" > output/allure/allure-results/environment.properties
+      echo "Build ID=${{ github.run_id }}" >> output/allure/allure-results/environment.properties
+      echo "Workflow=${{ github.workflow }}" >> output/allure/allure-results/environment.properties
+      echo "Branch=${{ github.ref_name }}" >> output/allure/allure-results/environment.properties
+      echo "Date=$(date '+%Y-%m-%d %H:%M:%S')" >> output/allure/allure-results/environment.properties
+  - name: Cache Allure history
+    uses: actions/cache@v3
+    with:
+      path: output/allure/history
+      key: allure-history-${{ github.ref_name }}
+      restore-keys: |
+        allure-history-
+  - name: Generate Allure Report
+    uses: simple-elf/allure-report-action@master
+    with:
+      allure_results: output/allure/allure-results
+      allure_report: output/allure/allure-report
+      allure_history: output/allure/history
+  - name: Deploy reports to GitHub Pages
+    if: always()
+    uses: peaceiris/actions-gh-pages@v3
+    with:
+      github_token: ${{ secrets.GITHUB_TOKEN }}
+      publish_branch: gh-pages
+      publish_dir: output/allure/allure-report
