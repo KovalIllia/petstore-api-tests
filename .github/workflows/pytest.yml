@@ -8,6 +8,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
 
     steps:
       - name: Checkout code
@@ -29,53 +33,38 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # Установка всіх залежностей, включаючи pytest, allure-pytest, etc.
           pip install -r requirements.txt
 
       - name: Create output directories
-
         run: |
-          mkdir -p output/allure/allure-results
-          mkdir -p output/reports
+          # Створюємо лише allure-results
+          mkdir -p output/allure-results
 
       - name: Run pytest with Allure
         run: |
-          # Запуск тестів. Переконайтеся, що 'tests/' - це правильний шлях!
+          # Використовуємо коректний шлях для allure-results
           pytest -s \
-            --alluredir=output/allure/allure-results \
-            --junitxml=output/reports/results.xml \
-            --html=output/reports/report.html \
+            --alluredir=output/allure-results \
             tests/
 
-      - name: Add environment info to Allure
-        run: |
-          # Папка вже створена на кроці вище
-          echo "Build Number=${{ github.run_number }}" > output/allure/allure-results/environment.properties
-          echo "Build ID=${{ github.run_id }}" >> output/allure/allure-results/environment.properties
-          echo "Workflow=${{ github.workflow }}" >> output/allure/allure-results/environment.properties
-          echo "Branch=${{ github.ref_name }}" >> output/allure/allure-results/environment.properties
-          echo "Date=$(date '+%Y-%m-%d %H:%M:%S')" >> output/allure/allure-results/environment.properties
 
-      - name: Cache Allure history
-        uses: actions/cache@v3
+      - name: Upload Allure results artifact
+        uses: actions/upload-artifact@v4
         with:
-          path: output/allure/history
-          key: allure-history-${{ github.ref_name }}
-          restore-keys: |
-            allure-history-
+          name: allure-results
+          path: output/allure-results
 
-      - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@master
+
+      - name: Build and deploy Allure Report to GitHub Pages
+        uses: allure-framework/allure-action/upload-pages-build@v1
+        id: allure-build
         with:
-          allure_results: output/allure/allure-results
-          allure_report: output/allure/allure-report
-          allure_history: output/allure/history
+          artifact-path: allure-results
+          base-url: ${{ github.event.repository.name }}
 
-      - name: Deploy reports to GitHub Pages
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
         if: always()
-        uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: output/allure/allure-report
-          keep_files: true
+          artifact_name: ${{ steps.allure-build.outputs.artifact-name }}

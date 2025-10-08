@@ -95,7 +95,7 @@ Workflow configuration file:
 
 Current test results are available on GitHub Pages:
 
-- [Allure Report](https://kovalillia.github.io/testProject2/)
+- [Allure Report](https://kovalillia.github.io/petstore-api-tests/)
 - [Pytest HTML Report](https://kovalillia.github.io/testProject2/pytest-report.html)
 
 ---
