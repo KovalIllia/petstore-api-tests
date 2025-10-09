@@ -1,0 +1,1 @@
+Generated pet payload: {'id': 1132122617, 'category': {'id': 1272519768, 'name': 'democratic'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/524/213'], 'tags': [{'id': 924481470, 'name': 'in'}], 'status': 'available'}
