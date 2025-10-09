@@ -1,16 +1,18 @@
 ---
+name: Pytest Allure Report
 
-name: Pytest Workflow
-
-'on':
+"on":
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
 
     steps:
       - name: Checkout code
@@ -18,71 +20,63 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          python-version: "3.9"
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest allure-pytest
 
-      - name: Create output directories
-        run: mkdir -p allure-results
+      - name: Install Allure
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y default-jre
+          URL="https://github.com/allure-framework/allure2"
+          URL="$URL/releases/download/2.27.0/allure-2.27.0.tgz"
+          curl -Lo allure.tgz "$URL"
+          sudo tar -xzf allure.tgz -C /opt/
+          sudo ln -sf /opt/allure-2.27.0/bin/allure /usr/bin/allure
 
-      - name: Get Allure history
+      - name: Get previous history
         uses: actions/checkout@v4
         if: always()
         continue-on-error: true
         with:
           ref: gh-pages
-          path: gh-pages
+          path: gh-pages-history
 
-      - name: Copy history from previous runs
-        if: always()
-        continue-on-error: true
+      - name: Prepare with history
         run: |
-          if [ -d "gh-pages/history" ]; then
-            echo "Copying history from gh-pages/history"
-            cp -r gh-pages/history allure-results/history
-            ls -la allure-results/history
-          elif [ -d "gh-pages/allure-history/history" ]; then
-            echo "Copying history from gh-pages/allure-history/history"
-            cp -r gh-pages/allure-history/history allure-results/history
-            ls -la allure-results/history
-          else
-            echo "No previous history found"
+          mkdir -p allure-results
+          if [ -d "gh-pages-history/history" ]; then
+            echo "Copying history from previous run"
+            cp -r gh-pages-history/history allure-results/
           fi
 
-      - name: Run pytest with Allure
+      - name: Run tests
         run: |
-          pytest -s \
-            --alluredir=allure-results \
-            tests/
+          pytest --alluredir=allure-results -v
 
-      - name: Allure Report action
-        uses: simple-elf/allure-report-action@master
+      - name: Generate report
         if: always()
-        with:
-          allure_results: allure-results
-          allure_history: allure-history
-          keep_reports: 20
+        run: |
+          allure generate allure-results --clean -o _site
+          touch _site/.nojekyll
 
-      - name: Deploy report to Github Pages
-        if: always()
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
+        if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-history
+          publish_dir: _site
           keep_files: true
+          force_orphan: false
+
+      - name: Verify deployment
+        run: |
+          echo "Allure Report deployed"
+          echo "Check history in Trends"
+          echo "URL: https://kovalillia.github.io/petstore-api-tests/"

@@ -6,8 +6,9 @@ output/logs/
 *.log
 how*
 secrets/
-allure-results/
-allure-report/
 output/allure/allure-results/
 output/allure/allure-report/
-!output/allure/history
+output/allure/history/
+allure-results/
+allure-report/
+allure-history/
