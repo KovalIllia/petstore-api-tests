@@ -1,0 +1,3 @@
+Generated pet payload: {'id': 1945676796, 'category': {'id': 975513198, 'name': 'deal'}, 'name': 'Rex', 'photoUrls': ['https://placekitten.com/391/204'], 'tags': [{'id': 1355243331, 'name': 'four'}], 'status': 'available'}
+Generated pet payload: {'id': 1052249249, 'category': {'id': 1453005390, 'name': 'protect'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/699/119'], 'tags': [{'id': 1054539339, 'name': 'fish'}], 'status': 'available'}
+Generated pet payload: {'id': 992042456, 'category': {'id': 877952853, 'name': 'alone'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/942/22'], 'tags': [{'id': 648444706, 'name': 'enough'}], 'status': 'available'}
