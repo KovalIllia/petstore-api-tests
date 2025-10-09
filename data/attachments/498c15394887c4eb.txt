@@ -1,0 +1,2 @@
+Generated pet payload: {'id': 1846648570, 'category': {'id': 796227196, 'name': 'question'}, 'name': 'Rex', 'photoUrls': ['https://dummyimage.com/751x745'], 'tags': [{'id': 1325011851, 'name': 'without'}], 'status': 'available'}
+Generated pet payload: {'id': 1034609102, 'category': {'id': 182930334, 'name': 'begin'}, 'name': 'Rex', 'photoUrls': ['https://dummyimage.com/16x780'], 'tags': [{'id': 899222081, 'name': 'top'}], 'status': 'available'}

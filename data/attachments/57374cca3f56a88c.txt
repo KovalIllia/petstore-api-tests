@@ -1,0 +1,1 @@
+Generated pet payload: {'id': 1846648570, 'category': {'id': 796227196, 'name': 'question'}, 'name': 'Rex', 'photoUrls': ['https://dummyimage.com/751x745'], 'tags': [{'id': 1325011851, 'name': 'without'}], 'status': 'available'}
