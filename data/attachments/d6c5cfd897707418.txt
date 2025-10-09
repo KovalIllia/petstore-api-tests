@@ -1,0 +1,1 @@
+200 {'{{estado}}': 1, 'sold': 20, 'string': 578, 'alive': 1, 'unavailable': 1, 'pending': 17, 'available': 279, 'Available': 1, 'peric': 1, 'Healthy': 8}
