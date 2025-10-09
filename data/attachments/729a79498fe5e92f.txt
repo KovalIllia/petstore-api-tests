@@ -1,0 +1,3 @@
+Generated pet payload: {'id': 1763495694, 'category': {'id': 978293124, 'name': 'eye'}, 'name': 'Rex', 'photoUrls': ['https://dummyimage.com/892x408'], 'tags': [{'id': 1137932197, 'name': 'beat'}], 'status': 'available'}
+Generated pet payload: {'id': 1478485980, 'category': {'id': 1333597638, 'name': 'close'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/116/498'], 'tags': [{'id': 248615186, 'name': 'edge'}], 'status': 'available'}
+Generated pet payload: {'id': 688088702, 'category': {'id': 600325333, 'name': 'source'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/462/661'], 'tags': [{'id': 1455056190, 'name': 'article'}], 'status': 'available'}
