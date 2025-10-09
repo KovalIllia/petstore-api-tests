@@ -1,0 +1,3 @@
+Generated pet payload: {'id': 1178940869, 'category': {'id': 647286168, 'name': 'writer'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/120/645'], 'tags': [{'id': 581858892, 'name': 'up'}], 'status': 'available'}
+Generated pet payload: {'id': 982053140, 'category': {'id': 1170776787, 'name': 'simply'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/332/173'], 'tags': [{'id': 1041660698, 'name': 'medical'}], 'status': 'available'}
+Generated pet payload: {'id': 203675595, 'category': {'id': 929435921, 'name': 'wear'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/392/19'], 'tags': [{'id': 5953235, 'name': 'hit'}], 'status': 'available'}
