@@ -1,10 +1,11 @@
 ---
 name: Pytest Allure Report
 
+# yamllint disable-line rule:truthy
 on:
   push:
     branches: [main]
-  workflow_dispatch: true
+  workflow_dispatch:
 
 jobs:
   test:
