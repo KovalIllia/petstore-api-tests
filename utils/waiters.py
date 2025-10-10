@@ -17,7 +17,9 @@ class PetWaiter:
 
 class StoreWaiter:
     @staticmethod
-    def wait_for_order(store_api, order_id: int, expected_status=200, retries: int = 10, delay: int = 1):
+    def wait_for_order(
+        store_api, order_id: int, expected_status=200, retries: int = 10, delay: int = 1
+    ):
         """
         Waits for order until its status code matches expected_status.
         Supports single int or list/tuple of acceptable statuses.
@@ -32,7 +34,9 @@ class StoreWaiter:
                 if response.status_code == expected_status:
                     return response
 
-            print(f"[Retry {attempt}] Order {order_id} not found, got {response.status_code}")
+            print(
+                f"[Retry {attempt}] Order {order_id} not found, got {response.status_code}"
+            )
             time.sleep(delay)
 
         raise AssertionError(
