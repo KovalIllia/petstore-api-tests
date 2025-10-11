@@ -36,28 +36,29 @@ def test_add_pet(pet_api, pet_payload):
 
 
 def test_update_pet(pet_api, pet_payload):
-    creating_pet_response = pet_api.add_pet(pet_payload)
-    original_pet_data = dict(creating_pet_response.json())
+    add_pet_response = pet_api.add_pet(pet_payload)
+    assert add_pet_response.status_code == 200, f"unsuccessful attempt to add a pet"
+    original_pet_data = dict(add_pet_response.json())
 
     update_fields = UpdatePetFactory.update_pet_with_name_and_status(
         name="Alfredicus", status="sold"
     )
-
     copied_pet_data = original_pet_data.copy()
+    for key in ["id", "category", "name", "photoUrls", "tags", "status"]:
+        assert key in copied_pet_data, f"Missing key in response: {copied_pet_data}"
     copied_pet_data.update(update_fields)
     updated_pet = pet_api.update_pet(copied_pet_data)
+    assert (
+        updated_pet.status_code == 200
+    ), f"Update failed, got {updated_pet.status_code}:{updated_pet.text}"
 
-    Checking.check_status_code(response=updated_pet, status_code=200)
-    Checking.check_json_value(
-        response=updated_pet, field_name="status", expected_value="sold"
-    )
-    Checking.check_json_value(
-        response=updated_pet, field_name="name", expected_value="Alfredicus"
-    )
-    Checking.check_json_answer(
-        response=updated_pet,
-        expected_value=["id", "category", "name", "photoUrls", "tags", "status"],
-    )
+    updated_pet_data = updated_pet.json()
+    assert (
+        updated_pet_data["name"] == update_fields["name"]
+    ), f"Expected name: {update_fields['name']}, got {updated_pet_data['name']}"
+    assert (
+        updated_pet_data["status"] == update_fields["status"]
+    ), f"Expected name: {update_fields['status']}, got {updated_pet_data['status']}"
 
 
 def test_get_pets_by_status(pet_api, pet_payload):
