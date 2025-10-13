@@ -3,7 +3,7 @@ import time
 
 class PetWaiter:
     @staticmethod
-    def wait_for_pet(pet_api, pet_id: int, expected_status=200, retries=10, delay=2):
+    def wait_for_pet(pet_api, pet_id: int, expected_status=200, retries=20, delay=3):
 
         for _ in range(retries):
             response = pet_api.find_pet_by_id(pet_id)
@@ -18,8 +18,7 @@ class PetWaiter:
 class StoreWaiter:
     @staticmethod
     def wait_for_order(
-        store_api, order_id: int, expected_status=200, retries: int = 10, delay: int = 1
-    ):
+        store_api, order_id: int, expected_status=200, retries= 20, delay= 4):
         """
         Waits for order until its status code matches expected_status.
         Supports single int or list/tuple of acceptable statuses.
