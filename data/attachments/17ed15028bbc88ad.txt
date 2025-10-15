@@ -1,0 +1,11 @@
+Generated pet payload: {'id': 1891838479, 'category': {'id': 1306821039, 'name': 'hour'}, 'name': 'Rex', 'photoUrls': ['https://placekitten.com/163/246'], 'tags': [{'id': 574576248, 'name': 'cultural'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 1891838479 is available
+Generated pet payload: {'id': 884705183, 'category': {'id': 1081362544, 'name': 'sell'}, 'name': 'Rex', 'photoUrls': ['https://placekitten.com/949/463'], 'tags': [{'id': 1020601328, 'name': 'argue'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 884705183 is available
+Generated pet payload: {'id': 470958984, 'category': {'id': 411458603, 'name': 'cultural'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/270/508'], 'tags': [{'id': 897863677, 'name': 'door'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 470958984 is available
+🔄 Attempt 1/20 - Status: 404
+✅ Pet 470958984 is available

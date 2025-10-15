@@ -1,0 +1,19 @@
+Generated pet payload: {'id': 1024614418, 'category': {'id': 1281179594, 'name': 'sing'}, 'name': 'Rex', 'photoUrls': ['https://dummyimage.com/499x838'], 'tags': [{'id': 1357747046, 'name': 'parent'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 1024614418 is available
+Generated pet payload: {'id': 192447243, 'category': {'id': 1242698673, 'name': 'case'}, 'name': 'Rex', 'photoUrls': ['https://dummyimage.com/1004x34'], 'tags': [{'id': 706007886, 'name': 'role'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 404
+⚠️Pet 192447243 not found (attempt 1), continuing...
+🔄 Attempt 2/20 - Status: 404
+⚠️Pet 192447243 not found (attempt 2), continuing...
+🔄 Attempt 3/20 - Status: 404
+⚠️Pet 192447243 not found (attempt 3), continuing...
+🔄 Attempt 4/20 - Status: 200
+✅ Pet 192447243 is available
+Generated pet payload: {'id': 1428732180, 'category': {'id': 849834587, 'name': 'if'}, 'name': 'Rex', 'photoUrls': ['https://placekitten.com/620/362'], 'tags': [{'id': 261739356, 'name': 'to'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 404
+⚠️Pet 1428732180 not found (attempt 1), continuing...
+🔄 Attempt 2/20 - Status: 404
+⚠️Pet 1428732180 not found (attempt 2), continuing...
+🔄 Attempt 3/20 - Status: 200
+✅ Pet 1428732180 is available
