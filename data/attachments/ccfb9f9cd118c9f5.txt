@@ -1,0 +1,6 @@
+Generated pet payload: {'id': 553174842, 'category': {'id': 621924061, 'name': 'report'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/791/810'], 'tags': [{'id': 566198637, 'name': 'second'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 553174842 is available
+Generated pet payload: {'id': 1871644745, 'category': {'id': 86811526, 'name': 'poor'}, 'name': 'Rex', 'photoUrls': ['https://dummyimage.com/864x534'], 'tags': [{'id': 414805167, 'name': 'week'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 1871644745 is available

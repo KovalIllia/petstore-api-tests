@@ -1,0 +1,18 @@
+Generated pet payload: {'id': 1836473868, 'category': {'id': 948710274, 'name': 'east'}, 'name': 'Rex', 'photoUrls': ['https://placekitten.com/495/390'], 'tags': [{'id': 1692490902, 'name': 'perform'}], 'status': 'available'}
+✅ Created pet with ID: 1836473868
+🔄 Attempt 1/20 - Status: 404
+⚠️Pet 1836473868 not found (attempt 1), continuing...
+🔄 Attempt 2/20 - Status: 404
+⚠️Pet 1836473868 not found (attempt 2), continuing...
+🔄 Attempt 3/20 - Status: 404
+⚠️Pet 1836473868 not found (attempt 3), continuing...
+🔄 Attempt 4/20 - Status: 200
+✅ Pet 1836473868 is available
+✅ Pet 1836473868 confirmed available
+🔄 Starting update process for pet 1836473868
+🔄 Update attempt 1/5 for pet 1836473868
+⚠️ Update failed with 404 (attempt 1), retrying...
+🔄 Update attempt 2/5 for pet 1836473868
+✅ Update successful on attempt 2
+⏳ Waiting for updated pet 1836473868 to be available...
+✅ Successfully retrieved updated pet: {'id': 1836473868, 'category': {'id': 948710274, 'name': 'east'}, 'name': 'Lopik', 'photoUrls': ['https://placekitten.com/495/390'], 'tags': [{'id': 1692490902, 'name': 'perform'}], 'status': 'sold'}
