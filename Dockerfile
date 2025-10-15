@@ -11,7 +11,8 @@ RUN pip install pytest allure-python-commons pytest-html pytest-xdist
 
 RUN mkdir -p /output/test_result
 
+ENV PYTHONPATH=/app
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-CMD ["python", "-m", "pytest", "-s", "--alluredir=/output/test_result"]
+CMD ["pytest", "-s", "--alluredir=/output/test_result"]

@@ -192,6 +192,18 @@ allure generate allure-results --clean -o allure-report
 
 # Serve report locally
 allure serve allure-results
+
+# Quick test run with report
+./output/scripts/run_tests.sh
+
+# Serve existing results
+allure serve output/allure/allure-results
+
+# Generate HTML report
+allure generate output/allure/allure-results --clean
+
+# Check history status
+ls -la output/allure/history/
 ```
 
 ### Docker Execution

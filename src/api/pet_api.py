@@ -8,6 +8,7 @@ class PetApi:
     def __init__(self, client: ApiClient):
         self.client = client
 
+
     def add_pet(self,pet_body:dict):
         with allure.step("POST /pet"):
             return self.client.post("/pet",body=pet_body)
@@ -24,10 +25,12 @@ class PetApi:
         with allure.step("GET /pet/{petId}"):
             return self.client.get(f"/pet/{pet_id}")
 
+    @allure.step("POST /pet/pet_id")
     def update_pet_with_form_data(self, pet_id: int, name: str, status: str):
         with allure.step(f"POST /pet/{pet_id}"):
+            headers = {"Content-Type": "application/x-www-form-urlencoded"}
             body = {"name": name, "status": status}
-            return self.client.post_form(f"/pet/{pet_id}", body=body)
+            return self.client.post_form(f"pet/{pet_id}", body=body,headers=headers)
 
     def delete_pet(self,pet_id:int):
         with allure.step("DELETE /pet/{petId}"):

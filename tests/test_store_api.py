@@ -1,7 +1,7 @@
 import pytest
 
 from utils.waiters import StoreWaiter
-
+from tests.conftest import store_api
 
 def test_create_first_order(store_api, store_payload):
     create_order_response = store_api.place_order(store_payload)
@@ -70,8 +70,3 @@ def test_delete_purchase_order_by_id(store_payload, store_api):
             found_deleted_data.status_code == 404
     ), f"Pet with id: {store_id} was not deleted"
 
-    # Checking.check_status_code(response=delete_store_order, status_code=[200, 404])
-    # final_check = store_api.get_info_about_placed_order_by_id(store_id)
-    # Checking.check_status_code(response=response, status_code=[200, 404])
-    # if final_check.status_code == 200:
-    #     print(f"API did not remove order {store_id}, got 200 instead of 404")
