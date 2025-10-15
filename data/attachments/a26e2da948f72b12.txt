@@ -1,0 +1,1 @@
+Generated pet payload: {'id': 2009931469, 'category': {'id': 1313391139, 'name': 'every'}, 'name': 'Rex', 'photoUrls': ['https://placekitten.com/530/180'], 'tags': [{'id': 792264283, 'name': 'you'}], 'status': 'available'}

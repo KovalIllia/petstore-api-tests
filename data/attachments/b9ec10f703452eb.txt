@@ -1,0 +1,9 @@
+Generated pet payload: {'id': 726274220, 'category': {'id': 810914999, 'name': 'necessary'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/295/858'], 'tags': [{'id': 1150455561, 'name': 'that'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 404
+⚠️Pet 726274220 not found (attempt 1), continuing...
+🔄 Attempt 2/20 - Status: 404
+⚠️Pet 726274220 not found (attempt 2), continuing...
+🔄 Attempt 3/20 - Status: 404
+⚠️Pet 726274220 not found (attempt 3), continuing...
+🔄 Attempt 4/20 - Status: 200
+✅ Pet 726274220 is available

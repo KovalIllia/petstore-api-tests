@@ -1,0 +1,32 @@
+Generated pet payload: {'id': 117060914, 'category': {'id': 861197974, 'name': 'strategy'}, 'name': 'Rex', 'photoUrls': ['https://placekitten.com/510/369'], 'tags': [{'id': 1716147044, 'name': 'page'}], 'status': 'available'}
+✅ Created pet with ID: 117060914
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 117060914 is available
+✅ Pet 117060914 confirmed available
+🔄 Starting update process for pet 117060914
+🔄 Update attempt 1/5 for pet 117060914
+⚠️ Update failed with 404 (attempt 1), retrying...
+🔄 Update attempt 2/5 for pet 117060914
+⚠️ Update failed with 404 (attempt 2), retrying...
+🔄 Update attempt 3/5 for pet 117060914
+⚠️ Update failed with 404 (attempt 3), retrying...
+🔄 Update attempt 4/5 for pet 117060914
+⚠️ Update failed with 404 (attempt 4), retrying...
+🔄 Update attempt 5/5 for pet 117060914
+⚠️ Update failed with 404 (attempt 5), retrying...
+Generated pet payload: {'id': 798133751, 'category': {'id': 1407217968, 'name': 'fish'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/399/264'], 'tags': [{'id': 313890371, 'name': 'agent'}], 'status': 'available'}
+✅ Created pet with ID: 798133751
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 798133751 is available
+✅ Pet 798133751 confirmed available
+🔄 Starting update process for pet 798133751
+🔄 Update attempt 1/5 for pet 798133751
+⚠️ Update failed with 404 (attempt 1), retrying...
+🔄 Update attempt 2/5 for pet 798133751
+⚠️ Update failed with 404 (attempt 2), retrying...
+🔄 Update attempt 3/5 for pet 798133751
+⚠️ Update failed with 404 (attempt 3), retrying...
+🔄 Update attempt 4/5 for pet 798133751
+✅ Update successful on attempt 4
+⏳ Waiting for updated pet 798133751 to be available...
+⚠️ Pet 798133751 not found after update (API instability)
