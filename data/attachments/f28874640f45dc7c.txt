@@ -1,0 +1,5 @@
+Generated pet payload: {'id': 1153259736, 'category': {'id': 264812640, 'name': 'home'}, 'name': 'Rex', 'photoUrls': ['https://placekitten.com/253/190'], 'tags': [{'id': 160435807, 'name': 'back'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 1153259736 is available
+🔄 Attempt 1/20 - Status: 404
+✅ Pet 1153259736 is available

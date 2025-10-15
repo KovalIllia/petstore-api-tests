@@ -1,0 +1,14 @@
+Generated pet payload: {'id': 418152295, 'category': {'id': 59547963, 'name': 'woman'}, 'name': 'Rex', 'photoUrls': ['https://placekitten.com/993/518'], 'tags': [{'id': 1096820712, 'name': 'Mr'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 418152295 is available
+Generated pet payload: {'id': 1852862022, 'category': {'id': 1303568350, 'name': 'production'}, 'name': 'Rex', 'photoUrls': ['https://placekitten.com/310/164'], 'tags': [{'id': 2000310864, 'name': 'magazine'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 404
+⚠️Pet 1852862022 not found (attempt 1), continuing...
+🔄 Attempt 2/20 - Status: 404
+⚠️Pet 1852862022 not found (attempt 2), continuing...
+🔄 Attempt 3/20 - Status: 404
+⚠️Pet 1852862022 not found (attempt 3), continuing...
+🔄 Attempt 4/20 - Status: 404
+⚠️Pet 1852862022 not found (attempt 4), continuing...
+🔄 Attempt 5/20 - Status: 200
+✅ Pet 1852862022 is available

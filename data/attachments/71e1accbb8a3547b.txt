@@ -1,0 +1,3 @@
+Generated pet payload: {'id': 418152295, 'category': {'id': 59547963, 'name': 'woman'}, 'name': 'Rex', 'photoUrls': ['https://placekitten.com/993/518'], 'tags': [{'id': 1096820712, 'name': 'Mr'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 418152295 is available

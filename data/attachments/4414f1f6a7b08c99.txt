@@ -1,0 +1,2 @@
+Generated pet payload: {'id': 1076441209, 'category': {'id': 115556595, 'name': 'network'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/614/302'], 'tags': [{'id': 995350970, 'name': 'act'}], 'status': 'available'}
+Sent ID: 1076441209, received ID: 1076441209
