@@ -1,0 +1,5 @@
+Generated pet payload: {'id': 510288708, 'category': {'id': 575255070, 'name': 'teach'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/349/674'], 'tags': [{'id': 1649806588, 'name': 'off'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 510288708 is available
+🔄 Attempt 1/20 - Status: 404
+✅ Pet 510288708 is available

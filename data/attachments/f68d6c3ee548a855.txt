@@ -1,0 +1,2 @@
+Generated pet payload: {'id': 1500093722, 'category': {'id': 648448462, 'name': 'management'}, 'name': 'Rex', 'photoUrls': ['https://placekitten.com/830/420'], 'tags': [{'id': 685572187, 'name': 'the'}], 'status': 'available'}
+Sent ID: 1500093722, received ID: 1500093722

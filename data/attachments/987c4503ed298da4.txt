@@ -1,0 +1,8 @@
+Generated pet payload: {'id': 1409719305, 'category': {'id': 161764406, 'name': 'dinner'}, 'name': 'Rex', 'photoUrls': ['https://dummyimage.com/355x248'], 'tags': [{'id': 944369201, 'name': 'south'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 404
+⚠️Pet 1409719305 not found (attempt 1), continuing...
+🔄 Attempt 2/20 - Status: 200
+✅ Pet 1409719305 is available
+Generated pet payload: {'id': 1038954450, 'category': {'id': 501501347, 'name': 'town'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/172/962'], 'tags': [{'id': 266985022, 'name': 'hundred'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 1038954450 is available

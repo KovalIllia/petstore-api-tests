@@ -1,0 +1,12 @@
+Generated pet payload: {'id': 705439570, 'category': {'id': 18832573, 'name': 'something'}, 'name': 'Rex', 'photoUrls': ['https://dummyimage.com/428x166'], 'tags': [{'id': 675611531, 'name': 'tend'}], 'status': 'available'}
+✅ Created pet with ID: 705439570
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 705439570 is available
+✅ Pet 705439570 confirmed available
+🔄 Starting update process for pet 705439570
+🔄 Update attempt 1/5 for pet 705439570
+⚠️ Update failed with 404 (attempt 1), retrying...
+🔄 Update attempt 2/5 for pet 705439570
+✅ Update successful on attempt 2
+⏳ Waiting for updated pet 705439570 to be available...
+✅ Successfully retrieved updated pet: {'id': 705439570, 'category': {'id': 18832573, 'name': 'something'}, 'name': 'Lopik', 'photoUrls': ['https://dummyimage.com/428x166'], 'tags': [{'id': 675611531, 'name': 'tend'}], 'status': 'sold'}
