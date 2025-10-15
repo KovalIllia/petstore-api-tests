@@ -1,0 +1,18 @@
+Generated pet payload: {'id': 1572639119, 'category': {'id': 19638553, 'name': 'one'}, 'name': 'Rex', 'photoUrls': ['https://placekitten.com/445/454'], 'tags': [{'id': 454914940, 'name': 'affect'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 1572639119 is available
+Generated pet payload: {'id': 357998688, 'category': {'id': 1738722840, 'name': 'idea'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/447/363'], 'tags': [{'id': 216042751, 'name': 'sure'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 404
+⚠️Pet 357998688 not found (attempt 1), continuing...
+🔄 Attempt 2/20 - Status: 404
+⚠️Pet 357998688 not found (attempt 2), continuing...
+🔄 Attempt 3/20 - Status: 200
+✅ Pet 357998688 is available
+Generated pet payload: {'id': 18067953, 'category': {'id': 1812229317, 'name': 'dog'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/577/801'], 'tags': [{'id': 330300992, 'name': 'us'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 18067953 is available
+Generated pet payload: {'id': 737792680, 'category': {'id': 1841239255, 'name': 'course'}, 'name': 'Rex', 'photoUrls': ['https://picsum.photos/342/587'], 'tags': [{'id': 771811016, 'name': 'court'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 200
+✅ Pet 737792680 is available
+🔄 Attempt 1/20 - Status: 404
+✅ Pet 737792680 is available

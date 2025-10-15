@@ -1,0 +1,7 @@
+Generated pet payload: {'id': 30461142, 'category': {'id': 1676981986, 'name': 'enough'}, 'name': 'Rex', 'photoUrls': ['https://dummyimage.com/448x763'], 'tags': [{'id': 1900744787, 'name': 'suggest'}], 'status': 'available'}
+🔄 Attempt 1/20 - Status: 404
+⚠️Pet 30461142 not found (attempt 1), continuing...
+🔄 Attempt 2/20 - Status: 404
+⚠️Pet 30461142 not found (attempt 2), continuing...
+🔄 Attempt 3/20 - Status: 200
+✅ Pet 30461142 is available
