@@ -11,19 +11,11 @@ class PetFactory:
     def default_pet(name=None, status="available") -> dict:
         return {
             "id": uuid.uuid4().int & (1 << 31) - 1,  # Unique id + character limit
-            "category": {
-                "id": uuid.uuid4().int & (1 << 31) - 1,
-                "name": fake.word()
-            },
+            "category": {"id": uuid.uuid4().int & (1 << 31) - 1, "name": fake.word()},
             "name": name or fake.first_name(),
             "photoUrls": [fake.image_url()],
-            "tags": [
-                {
-                    "id": uuid.uuid4().int & (1 << 31) - 1,
-                    "name": fake.word()
-                }
-            ],
-            "status": status
+            "tags": [{"id": uuid.uuid4().int & (1 << 31) - 1, "name": fake.word()}],
+            "status": status,
         }
 
 
@@ -36,4 +28,3 @@ class UpdatePetFactory:
         if status:
             body["status"] = status
         return body
-

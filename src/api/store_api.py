@@ -17,7 +17,7 @@ class StoreApi:
         return self.client.get(f"/store/order/{order_id}")
 
     @allure.step("POST /store/order")
-    def place_order(self, body:dict):
+    def place_order(self, body: dict):
         return self.client.post("/store/order", body)
 
     @allure.step("DELETE /store/order/order_id")

@@ -19,15 +19,15 @@ def test_add_pet(pet_api, pet_payload):
     for key in ["id", "category", "name", "photoUrls", "tags", "status"]:
         assert key in pet_data, f"Missing key in response: {key}"
     assert (
-            pet_data["status"] == pet_payload["status"]
+        pet_data["status"] == pet_payload["status"]
     ), f"Expected status '{pet_payload['status']}', but got '{pet_data['status']}' for pet {pet_data['name']}"
 
     assert (
-            pet_data["name"] == pet_payload["name"]
+        pet_data["name"] == pet_payload["name"]
     ), f"Expected name: {pet_payload['name']}, got {pet_data['name']}"
 
     assert (
-            pet_data["category"]["name"] == pet_payload["category"]["name"]
+        pet_data["category"]["name"] == pet_payload["category"]["name"]
     ), f"Expected category id: '{pet_data['category']['id']}', but got '{pet_payload['category']['id']}'"
 
     assert isinstance(pet_data["id"], int)
@@ -48,22 +48,22 @@ def test_update_pet(pet_api, pet_payload):
     copied_pet_data.update(update_fields)
     updated_pet = pet_api.update_pet(copied_pet_data)
     assert (
-            updated_pet.status_code == 200
+        updated_pet.status_code == 200
     ), f"Update failed, got {updated_pet.status_code}:{updated_pet.text}"
 
     updated_pet_data = updated_pet.json()
     assert (
-            updated_pet_data["name"] == update_fields["name"]
+        updated_pet_data["name"] == update_fields["name"]
     ), f"Expected name: {update_fields['name']}, got {updated_pet_data['name']}"
     assert (
-            updated_pet_data["status"] == update_fields["status"]
+        updated_pet_data["status"] == update_fields["status"]
     ), f"Expected name: {update_fields['status']}, got {updated_pet_data['status']}"
 
 
 def test_get_pets_by_status(pet_api, pet_payload):
     find_pet_by_response = pet_api.find_pet_by_status(status=PetStatus.AVAILABLE)
     assert (
-            find_pet_by_response.status_code == 200
+        find_pet_by_response.status_code == 200
     ), f"unsuccessful attempt to get a pet by status"
     pets_data = find_pet_by_response.json()
 
@@ -106,15 +106,16 @@ def test_update_pet_with_form(pet_api, pet_payload):
     print(f"🔄 Starting update process for pet {pet_id}")
 
     response_with_update = UpdateWaiter.wait_for_update_success(
-        pet_api,
-        pet_id,
-        pet_api.update_pet_with_form_data,
-        pet_id, new_name, new_status
+        pet_api, pet_id, pet_api.update_pet_with_form_data, pet_id, new_name, new_status
     )
 
     response_with_update_data = response_with_update.json()
-    assert "message" in response_with_update_data, f"No 'message' in response: {response_with_update_data}"
-    assert str(pet_id) in response_with_update_data["message"], f"Wrong pet ID in response: {response_with_update_data}"
+    assert (
+        "message" in response_with_update_data
+    ), f"No 'message' in response: {response_with_update_data}"
+    assert (
+        str(pet_id) in response_with_update_data["message"]
+    ), f"Wrong pet ID in response: {response_with_update_data}"
 
     """Waiting for the updated pet (may take longer)"""
     print(f"⏳ Waiting for updated pet {pet_id} to be available...")
@@ -128,16 +129,20 @@ def test_update_pet_with_form(pet_api, pet_payload):
             updated_pet_data = get_pet_by_id.json()
             print(f"✅ Successfully retrieved updated pet: {updated_pet_data}")
 
-            assert updated_pet_data[
-                       "name"] == new_name, f"Name not updated: expected {new_name}, got {updated_pet_data['name']}"
-            assert updated_pet_data[
-                       "status"] == new_status, f"Status not updated: expected {new_status}, got {updated_pet_data['status']}"
+            assert (
+                updated_pet_data["name"] == new_name
+            ), f"Name not updated: expected {new_name}, got {updated_pet_data['name']}"
+            assert (
+                updated_pet_data["status"] == new_status
+            ), f"Status not updated: expected {new_status}, got {updated_pet_data['status']}"
 
         elif get_pet_by_id.status_code == 404:
             print(f"⚠️ Pet {pet_id} not found after update (API instability)")
             """Maybe the animal has updated, but the API is temporarily not displaying
             In a real project, there would be recheck logic here"""
-            pytest.xfail(f"Petstore API instability - pet {pet_id} temporarily unavailable")
+            pytest.xfail(
+                f"Petstore API instability - pet {pet_id} temporarily unavailable"
+            )
 
     except Exception as e:
         print(f"⚠️ Error checking updated pet: {e}")
@@ -157,7 +162,7 @@ def test_delete_pet(pet_api, pet_payload):
     PetWaiter.wait_for_pet(pet_api, pet_id, expected_status=404)
     found_animal_response = pet_api.find_pet_by_id(pet_id)
     assert (
-            found_animal_response.status_code == 404
+        found_animal_response.status_code == 404
     ), f"Pet with id: {pet_id} was not deleted"
 
 
@@ -177,7 +182,7 @@ def test_upload_pet_image(pet_payload, files_client, pet_api):
     assert response.status_code == 200, f"unsuccessful to upload pet image"
     upload_data = response.json()
     assert (
-            "message" in upload_data
+        "message" in upload_data
     ), f"No 'message' in form update response: {upload_data}"
     for key in ["code", "type", "message"]:
         assert key in upload_data, f"Missing {key} in response: {upload_data}"
@@ -186,5 +191,5 @@ def test_upload_pet_image(pet_payload, files_client, pet_api):
     assert get_response.status_code == 200, f"Failed to get pet after image upload"
     pet_data_after_upload = get_response.json()
     assert (
-            len(pet_data_after_upload["photoUrls"]) > 0
+        len(pet_data_after_upload["photoUrls"]) > 0
     ), "photoUrls is empty after image upload"

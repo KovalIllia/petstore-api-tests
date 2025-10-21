@@ -11,7 +11,9 @@ class PetWaiter:
                 response = pet_api.find_pet_by_id(pet_id)
                 last_status = response.status_code
 
-                print(f"🔄 Attempt {attempt}/{retries} - Status: {response.status_code}")
+                print(
+                    f"🔄 Attempt {attempt}/{retries} - Status: {response.status_code}"
+                )
 
                 if response.status_code == expected_status:
                     print(f"✅ Pet {pet_id} is available")
@@ -34,10 +36,12 @@ class PetWaiter:
             f"This is expected behavior for test Petstore environment."
         )
 
+
 class StoreWaiter:
     @staticmethod
     def wait_for_order(
-        store_api, order_id: int, expected_status=200, retries= 20, delay= 4):
+        store_api, order_id: int, expected_status=200, retries=20, delay=4
+    ):
         """
         Waits for order until its status code matches expected_status.
         Supports single int or list/tuple of acceptable statuses.
@@ -62,7 +66,10 @@ class StoreWaiter:
             f"Expected {expected_status}, got last {response.status_code}"
         )
 
+
 """Temporary"""
+
+
 class UpdateWaiter:
     """Special Waiter for update operations with unstable API"""
 
@@ -85,4 +92,6 @@ class UpdateWaiter:
                 print(f"❌ Update failed with status {response.status_code}")
                 return response
 
-        raise AssertionError(f"Update failed after {max_retries} attempts due to API instability")
+        raise AssertionError(
+            f"Update failed after {max_retries} attempts due to API instability"
+        )

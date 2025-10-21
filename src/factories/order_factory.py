@@ -5,12 +5,13 @@ import datetime
 class OrderFactory:
     @staticmethod
     def default_order(
-            id: int = None,
-            petId: int = None,
-            quantity: int = 1,
-            shipDate: str = None,
-            status: str = "placed",
-            complete: bool = True)->dict:
+        id: int = None,
+        petId: int = None,
+        quantity: int = 1,
+        shipDate: str = None,
+        status: str = "placed",
+        complete: bool = True,
+    ) -> dict:
 
         if id is None:
             id = random.randint(1, 10000)
@@ -25,8 +26,6 @@ class OrderFactory:
             "quantity": quantity,
             "shipDate": shipDate,
             "status": status,
-            "complete": complete
+            "complete": complete,
         }
         return body
-
-
